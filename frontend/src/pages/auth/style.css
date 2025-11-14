@@ -1,0 +1,36 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background-color: #000;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255 , 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255 ,0.04) 1px, transparent 1px),
+    radial-gradient(circle at 20% 25%, rgba(255, 255, 225, 0.1), transparent 20%),
+    radial-gradient(circle at 80% 45%, rgba(255, 255, 255, 0.1), transparent 20%),
+    radial-gradient(circle at 55% 70%, rgba(255, 255, 255, 0.1), transparent 20%);
+  background-size:
+  60px 60px,
+  60px 60px,
+  100% 100%, 
+  100% 100%, 
+  100% 100%;
+  background-blend-mode: screen;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}

@@ -3,18 +3,3 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-body {
-  height: 100vh;
-  background-color: #000;
-  background-image:
-    radial-gradient(circle at 15% 25%, rgba(255, 255, 225, 0.16), transparent 60%),
-    radial-gradient(circle at 75% 85%, rgba(255, 255, 255, 0.16), transparent 60%);
-  background-size: 100% 100%, 100% 100%;
-  background-blend-mode: screen;
-  color: #fff;
-  font-family: "Inter", sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
