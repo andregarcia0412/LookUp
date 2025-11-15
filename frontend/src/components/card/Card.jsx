@@ -61,6 +61,7 @@ const Card = ({ title, label }) => {
       <input
         name="name"
         type="text"
+        autoComplete="off"
         placeholder="Name"
         id="name-input"
         ref={inputName}

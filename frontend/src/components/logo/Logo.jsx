@@ -11,8 +11,11 @@ const Logo = ({}) => {
     }, [])
 
     return(
-        <div className={`icon-container icon-active`}>
-            <img src={Wallet} alt="wallet-icon"/>
+        <div className={`logo-container ${isLoaded ? 'logo-active' : ''}`}>
+            <div className={'icon-container'}>
+                <img src={Wallet} alt="wallet-icon"/>
+            </div>
+            <h1>Appzinho Legal</h1>
         </div>
     )
 }
