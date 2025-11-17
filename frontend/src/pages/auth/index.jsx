@@ -1,5 +1,5 @@
 import './style.css'
-import Card from '../../components/card/Card';
+import Form from '../../components/login-form/Form';
 import Logo from '../../components/logo/Logo'
 
 const Auth = ({}) => {
@@ -9,7 +9,7 @@ const Auth = ({}) => {
       <div className='container'>
         <div className='card-container'>
           <Logo />
-          <Card title={"Welcome"} label={"Sign in to your account or create a new one"}/>
+          <Form title={"Welcome"} label={"Sign in to your account or create a new one"}/>
         </div>
       </div>
     </>

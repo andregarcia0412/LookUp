@@ -25,6 +25,10 @@ export class ExpenseService {
     return this.expenseRepository.find();
   }
 
+  findAllByUserId(user_id: number){
+    return this.expenseRepository.findBy({user_id})
+  }
+
   findOne(id: number) {
     return this.expenseRepository.findOneBy({id});
   }

@@ -6,10 +6,16 @@ export class Expense {
     @PrimaryGeneratedColumn()
     id: number
 
+    @Column()
+    name: string
+
+    @Column()
+    category: string
+
     @Column({nullable:true})
     description: string
 
-    @Column()
+    @Column("decimal", {precision: 10, scale: 2})
     amount: number
 
     @Column()

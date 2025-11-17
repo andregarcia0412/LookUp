@@ -22,12 +22,12 @@ export class AuthService {
         const user = await this.userService.findOneByEmail(signInDto.email)
 
         if(!user || !(await bcrypt.compare(signInDto.password, user.password))){            
-            throw new BadRequestException("Invalid Credentials")
+            throw new BadRequestException("Incorrect email or password")
         }
 
         const payload = {sub: user.id, email: user.email}
         const token = this.jwtService.sign(payload)
 
-        return new AuthResponseDto(token, this.jwtExpirationTimeInSeconds)
+        return new AuthResponseDto(user, token, this.jwtExpirationTimeInSeconds)
     }
 }

@@ -114,3 +114,11 @@ form.form-init{
   transform: scale(1.1);
   opacity: 100;
 }
+
+.errorP{
+  color: #FF2C2C;
+}
+
+.hidden{
+  display: none;
+}
