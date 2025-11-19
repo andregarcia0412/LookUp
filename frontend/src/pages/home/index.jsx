@@ -52,7 +52,12 @@ const Home = ({}) => {
 
   return (
     <div>
-      <RegisterExpenseCard/>
+      <RegisterExpenseCard
+        btnOnClick={async () => {
+          await createExpense()
+          await getExpenses()
+        }}
+      />
 
       <ExpenseCardsContainer
         removeExpense={removeExpense}

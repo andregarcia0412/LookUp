@@ -1,8 +1,8 @@
 .register-expense-container{
     display: flex;
     flex-direction: column;
-    height: 400px;
-    width: 400px;
+    height: 450px;
+    width: 450px;
     background-color: #18181B;
     border: 1px solid #27272A;
     border-radius: 12px;
@@ -23,10 +23,10 @@
     gap: 4px;
 }
 
-.register-input input, .register-input select{
+.register-input input{
     width: 100%;
     outline: none;
-    height: 30px;
+    height: 40px;
     border: 1px solid #3F3F46;
     background-color: #27272A;
     border-radius: 8px;
@@ -49,4 +49,15 @@
 
 .register-expense-container button:hover{
     opacity: 0.8;
+}
+
+@keyframes fadeSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
