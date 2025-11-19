@@ -1,0 +1,23 @@
+.icon-button{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #FFF;
+    border: none;
+    padding: 10px 12px;
+    width: 150px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s linear;
+
+    & img{
+        height: 16px;
+        width: 16px;
+    }
+}
+
+.icon-button:hover{
+    opacity: 0.7;
+}

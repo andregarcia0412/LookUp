@@ -3,12 +3,20 @@ import api from "../../services/api.js";
 import ExpenseCardsContainer from "../../components/expense-cards-container/ExpenseCardsContainer.jsx";
 import "./style.css";
 import RegisterExpenseCard from "../../components/register-expense-card/RegisterExpenseCard.jsx";
+import NeonCard from "../../components/neon-card/NeonCard.jsx";
+import Money from "../../assets/money.svg";
+import TrendingDown from "../../assets/trending_down.svg";
+import CalendarGreen from "../../assets/calendar_green.svg";
+import HomeHeader from "../../components/home-header/HomeHeader.jsx";
 
 const Home = ({}) => {
   const [newExpenseIsClosed, setNewExpenseClosed] = React.useState(false);
   const [userExpenses, setUserExpenses] = React.useState([]);
+  const [totalSpent, setTotalSpent] = React.useState(0);
 
   const userData = JSON.parse(localStorage.getItem("user_data"))?.user;
+
+  let month = new Date().toLocaleDateString("en-US", { month: "short" });
 
   React.useEffect(() => {
     if (!localStorage.getItem("user_data")) {
@@ -34,8 +42,12 @@ const Home = ({}) => {
 
   async function getExpenses() {
     const res = await api.get(`/expense/${userData.id}`);
-    console.log(res.data);
     setUserExpenses(res.data);
+    let sum = 0;
+    for (let i = 0; i < res.data.length; i++) {
+      sum += Number(res.data[i].amount);
+    }
+    setTotalSpent(sum);
   }
 
   async function removeExpense(id) {
@@ -45,6 +57,32 @@ const Home = ({}) => {
 
   return (
     <div>
+      <HomeHeader btnOnClick={setNewExpenseClosed}/>
+
+      <div className="neon-cards">
+        <NeonCard
+          icon={Money}
+          title={totalSpent.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          })}
+          subtitle="Total expenses"
+          color="blue"
+        />
+        <NeonCard
+          icon={TrendingDown}
+          title={userExpenses.length}
+          subtitle="Transactions"
+          color="purple"
+        />
+        <NeonCard
+          icon={CalendarGreen}
+          title={month}
+          subtitle="This month"
+          color="green"
+        />
+      </div>
+
       <div className={newExpenseIsClosed ? "hidden" : ""}>
         <RegisterExpenseCard
           btnOnClick={async (name, category, description, amount, date) => {

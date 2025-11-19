@@ -1,0 +1,7 @@
+.home-header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: rgba(9, 9, 11, 0.5);
+    border-bottom: 1px solid rgba(39, 39, 42);
+}
