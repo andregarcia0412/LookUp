@@ -50,6 +50,7 @@
     transition: opacity 0.2s linear;
     font-weight: bold;
     font-size: 15px;
+    border: none;
 }
 
 .register-expense-container button:hover{
