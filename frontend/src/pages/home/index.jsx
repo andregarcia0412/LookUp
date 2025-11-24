@@ -23,8 +23,6 @@ const Home = ({}) => {
 
   const userData = JSON.parse(localStorage.getItem("user_data"))?.user;
 
-  let month = new Date().toLocaleDateString("en-US", { month: "short" });
-
   React.useEffect(() => {
     if (!localStorage.getItem("user_data")) {
       window.location.href = "/auth";
@@ -75,9 +73,14 @@ const Home = ({}) => {
     getExpenses();
   }
 
+  async function patchExpense(id, body){
+    await api.patch(`/expense/${id}`, {...body, user_id: userData.id});
+    getExpenses();
+  }
+
   return (
     <div>
-      <HomeHeader btnOnClick={setNewExpenseClosed} />
+      <HomeHeader btnOnClick={() => setNewExpenseClosed(false)} />
       {shouldShowToast && (
         <Toast
           text={"Expense Added"}
@@ -137,6 +140,7 @@ const Home = ({}) => {
           <ExpenseCardsContainer
             removeExpense={removeExpense}
             userExpenses={userExpenses}
+            patchExpense={patchExpense}
           />
         </div>
       </div>

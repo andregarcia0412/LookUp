@@ -1,8 +1,13 @@
 import React, { forwardRef } from "react";
 import Select from "react-select"
 
-const CategorySelect = forwardRef(({options = [], placeholder = "Select a category"}, ref) => {
-  const [selected, setSelected] = React.useState(null);
+const CategorySelect = forwardRef(({options = [], placeholder = "Select a category", initialValue=null}, ref) => {
+  const [selected, setSelected] = React.useState(initialValue);
+  const [isFirstClick, setFirstClick] = React.useState(true)
+
+  React.useEffect(() => {
+    setSelected(initialValue)
+  }, [initialValue])
 
   const selectStyles = {
     control: (base, state) => ({
@@ -43,7 +48,7 @@ const CategorySelect = forwardRef(({options = [], placeholder = "Select a catego
       margin: 0,
       color: "#FFF",
       lineHeight: "normal",
-      transform: "translateY(30px)",
+      transform: isFirstClick ? "translateY(8px)" : "translateY(30px)"
     }),
 
     placeholder: (base) => ({
@@ -99,6 +104,7 @@ const CategorySelect = forwardRef(({options = [], placeholder = "Select a catego
 
   return (
         <Select
+          onMenuOpen={() => setFirstClick(false)}
           options={options}
           value={selected}
           onChange={(option) => setSelected(option)}

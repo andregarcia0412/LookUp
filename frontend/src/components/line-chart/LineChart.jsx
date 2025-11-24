@@ -11,9 +11,10 @@ import {
 } from "recharts";
 
 const LinechartComponent = ({infoArr}) => {
+  const sortedData = [...infoArr].sort((a,b) => new Date(a.date) - new Date(b.date))
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <AreaChart data={infoArr}>
+      <AreaChart data={sortedData}>
         <YAxis />
         <XAxis dataKey="name" />
 

@@ -3,16 +3,30 @@ import React from "react";
 import CategorySelect from "../../components/select/Select.jsx";
 import Close from "../../assets/close.png";
 
-const RegisterExpenseCard = ({ btnOnClick, onClose, onCloseToast }) => {
+const RegisterExpenseCard = ({
+  btnOnClick,
+  onClose,
+  onCloseToast,
+  isEditCard=false,
+  h1Text="Register New Expense",
+  btnText="Add Expense",
+  placeholders = [
+    "What is the expense?",
+    "0.00",
+    "Select a category",
+    "What was this expense for?",
+  ],
+  values = ["", "", "", "", new Date().toISOString().split("T")[0]],
+}) => {
   const nameInput = React.useRef();
   const descriptionInput = React.useRef();
   const categoryInput = React.useRef();
   const amountInput = React.useRef();
   const dateInput = React.useRef();
 
-  let today = new Date().toISOString().split("T")[0];
-
   const [errorMessage, setErrorMessage] = React.useState("");
+
+  const today = new Date().toISOString().split("T")[0]
 
   let name, amount, description, date, category;
 
@@ -94,7 +108,7 @@ const RegisterExpenseCard = ({ btnOnClick, onClose, onCloseToast }) => {
       };
     }
 
-    if(new Date(date) > new Date()){
+    if (new Date(date) > new Date()) {
       return {
         ok: false,
         message: "Insert a valid date",
@@ -105,20 +119,24 @@ const RegisterExpenseCard = ({ btnOnClick, onClose, onCloseToast }) => {
     return { ok: true };
   }
 
-  function clearFields(){
-    nameInput.current.value = ""
-    amountInput.current.value = ""
-    descriptionInput.current.value = ""
-    dateInput.current.value = today
-    setErrorMessage("")
+  function clearFields() {
+    nameInput.current.value = "";
+    amountInput.current.value = "";
+    descriptionInput.current.value = "";
+    dateInput.current.value = today;
+    setErrorMessage("");
   }
 
   return (
     <div className="backdrop">
       <div className="register-expense-container">
         <div className="register-expense-header">
-          <h1>Register New Expense</h1>
-          <button onClick={() => {onClose(true)}}>
+          <h1>{h1Text}</h1>
+          <button
+            onClick={() => {
+              onClose(true);
+            }}
+          >
             <img src={Close} />
           </button>
         </div>
@@ -128,7 +146,8 @@ const RegisterExpenseCard = ({ btnOnClick, onClose, onCloseToast }) => {
             type="text"
             name="name"
             ref={nameInput}
-            placeholder="What is the expense?"
+            placeholder={placeholders[0]}
+            defaultValue={values[0]}
           />
         </div>
         <div className="register-input">
@@ -137,7 +156,8 @@ const RegisterExpenseCard = ({ btnOnClick, onClose, onCloseToast }) => {
             type="text"
             name="amount"
             ref={amountInput}
-            placeholder="0.00"
+            placeholder={placeholders[1]}
+            defaultValue={values[1]}
           />
         </div>
         <div className="register-input">
@@ -146,6 +166,8 @@ const RegisterExpenseCard = ({ btnOnClick, onClose, onCloseToast }) => {
             options={selectOptions}
             name="category"
             ref={categoryInput}
+            placeholder={placeholders[2]}
+            initialValue={values[2]}
           />
         </div>
         <div className="register-input">
@@ -154,23 +176,35 @@ const RegisterExpenseCard = ({ btnOnClick, onClose, onCloseToast }) => {
             type="text"
             name="description"
             ref={descriptionInput}
-            placeholder="What was this expense for?"
+            placeholder={placeholders[3]}
+            defaultValue={values[3]}
           />
         </div>
         <div className="register-input">
           <label htmlFor="date">Date</label>
-          <input type="date" name="date" defaultValue={today} ref={dateInput} />
+          <input type="date" name="date" defaultValue={values[4]} ref={dateInput} />
         </div>
 
         <p style={{ color: "red" }}>{errorMessage}</p>
 
         <button
-          onClick={() => {
+          onClick={async () => {
             const result = validateFields();
             if (result.ok) {
-              btnOnClick(name, category, description, amount, date);
-              clearFields()
-              onCloseToast();
+              if(isEditCard){
+                btnOnClick({
+                  name,
+                  category,
+                  description,
+                  amount: Number(amount),
+                  date
+                })
+                onClose(true)
+              } else{
+                btnOnClick(name, category, description, amount, date);
+                onCloseToast();
+              }
+              clearFields();
               return;
             } else if (result.culprit != categoryInput.current) {
               result.culprit.classList.add("shake");
@@ -182,7 +216,7 @@ const RegisterExpenseCard = ({ btnOnClick, onClose, onCloseToast }) => {
             }
           }}
         >
-          Add Expense
+          {btnText}
         </button>
       </div>
     </div>

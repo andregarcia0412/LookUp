@@ -6,3 +6,28 @@
     border-bottom: 1px solid rgba(39, 39, 42);
     padding: 15px;
 }
+
+.main-content{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+#logout-button{
+    position: absolute;
+    left: 90%;
+    background: #FFF;
+    border: none;
+    padding: 10px 12px;
+    width: 150px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s linear;
+}
+
+#logout-button:hover{
+    opacity: 0.7;
+}

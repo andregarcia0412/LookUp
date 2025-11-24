@@ -3,7 +3,7 @@ import "./style.button.css";
 const Button = ({ icon, text, onClick }) => {
   return (
     <button className="icon-button" onClick={() => {
-        onClick(false)
+        onClick()
     }}>
       <img src={icon} />
       {text}

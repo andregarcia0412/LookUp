@@ -3,12 +3,8 @@ import "./style.expense-cards-container.css";
 import React from "react";
 import Paginator from "../paginator/Paginator";
 
-const ExpenseCardsContainer = ({ userExpenses, removeExpense }) => {
-  const dateOptions = {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  };
+const ExpenseCardsContainer = ({ userExpenses, removeExpense, patchExpense }) => {
+  userExpenses = [...userExpenses].sort((a,b) => new Date(b.date) - new Date(a.date))
   const [page, setPage] = React.useState(1);
   const perPage = 7;
   const start = (page - 1) * perPage;
@@ -35,20 +31,19 @@ const ExpenseCardsContainer = ({ userExpenses, removeExpense }) => {
         </div>
         <div className="expense-cards">
           {currentExpenses.map((expense) => {
-            const date = new Date(expense.date)
-            date.setMinutes(date.getMinutes() + date.getTimezoneOffset())
-
-            const formattedDate = new Intl.DateTimeFormat("en-US", dateOptions).format(date)
+            
             
             return (
             <ExpenseCard
               key={expense.id}
               name={expense.name}
               id={expense.id}
+              description={expense.description}
               removeExpense={removeExpense}
+              patchExpense={patchExpense}
               category={expense.category}
               price={expense.amount}
-              date={formattedDate}
+              date={new Date(expense.date).toISOString().split("T")[0]}
             />
           )})}
         </div>
