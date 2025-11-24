@@ -11,7 +11,7 @@ import HomeHeader from "../../components/home-header/HomeHeader.jsx";
 import Toast from "../../components/toast/Toast.jsx";
 import BarChartComponent from "../../components/bar-chart/BarChart.jsx";
 import ChartCard from "../../components/chart-card/ChartCard.jsx";
-import LineChartComponent from "../../components/line-chart/LineChart.jsx"
+import LineChartComponent from "../../components/line-chart/LineChart.jsx";
 
 const Home = ({}) => {
   const [newExpenseIsClosed, setNewExpenseClosed] = React.useState(true);
@@ -19,6 +19,7 @@ const Home = ({}) => {
   const [totalSpent, setTotalSpent] = React.useState(0);
   const [ToastIsVisible, setToastVisible] = React.useState(false);
   const [shouldShowToast, setShouldShowToast] = React.useState(false);
+  const [dailyAvg, setDailyAvg] = React.useState(0);
 
   const userData = JSON.parse(localStorage.getItem("user_data"))?.user;
 
@@ -50,9 +51,22 @@ const Home = ({}) => {
     const res = await api.get(`/expense/${userData.id}`);
     setUserExpenses(res.data);
     let sum = 0;
+    let monthlySum = 0;
+    const today = new Date();
+
     for (let i = 0; i < res.data.length; i++) {
+      const date = new Date(res.data[i].date);
       sum += Number(res.data[i].amount);
+
+      if (
+        date.getMonth() === today.getMonth() &&
+        date.getFullYear() == today.getFullYear()
+      ) {
+        monthlySum += Number(res.data[i].amount);
+      }
     }
+
+    setDailyAvg(monthlySum / 30);
     setTotalSpent(sum);
   }
 
@@ -76,9 +90,9 @@ const Home = ({}) => {
         <div className="neon-cards">
           <NeonCard
             icon={Money}
-            title={totalSpent.toLocaleString("pt-BR", {
+            title={totalSpent.toLocaleString("en-US", {
               style: "currency",
-              currency: "BRL",
+              currency: "USD",
             })}
             subtitle="Total expenses"
             color="blue"
@@ -91,8 +105,11 @@ const Home = ({}) => {
           />
           <NeonCard
             icon={CalendarGreen}
-            title={month}
-            subtitle="This month"
+            title={dailyAvg.toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+            })}
+            subtitle="This month's daily average"
             color="green"
           />
         </div>
@@ -112,12 +129,16 @@ const Home = ({}) => {
           />
         </div>
 
-        <ChartCard chart={<BarChartComponent infoArr={userExpenses} />} />
-        <ChartCard chart={<LineChartComponent infoArr={userExpenses} />} />
-        <ExpenseCardsContainer
-          removeExpense={removeExpense}
-          userExpenses={userExpenses}
-        />
+        <div className="info-wrapper">
+          <div className="home-charts">
+            <ChartCard chart={<BarChartComponent infoArr={userExpenses} />} />
+            <ChartCard chart={<LineChartComponent infoArr={userExpenses} />} />
+          </div>
+          <ExpenseCardsContainer
+            removeExpense={removeExpense}
+            userExpenses={userExpenses}
+          />
+        </div>
       </div>
     </div>
   );

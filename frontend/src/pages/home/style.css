@@ -19,3 +19,17 @@
 .hidden{
     display: none;
 }
+
+.home-charts{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.info-wrapper{
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}

@@ -21,7 +21,7 @@ const ExpenseCard = ({ name, id, category, price, date, removeExpense}) => {
       </div>
       <div className="price-button">
         <p id="price">
-          R$ <span style={{ color: "#FFF" }}>{price}</span>
+          $ <span style={{ color: "#FFF" }}>{price}</span>
         </p>
         <button id="remove-btn" onClick={() => removeExpense(id)}>
           <img id="trash" src={Trash} />

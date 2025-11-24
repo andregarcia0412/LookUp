@@ -10,7 +10,7 @@ const ExpenseCardsContainer = ({ userExpenses, removeExpense }) => {
     day: "numeric",
   };
   const [page, setPage] = React.useState(1);
-  const perPage = 4;
+  const perPage = 7;
   const start = (page - 1) * perPage;
   const end = start + perPage;
   const currentExpenses = userExpenses.slice(start, end);
