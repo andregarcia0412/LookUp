@@ -1,11 +1,18 @@
 .chart-card{
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    gap: 20px;
     width: 1000px;
     height: 500px;
     background: #18181B;
     border: 1px solid #27272A;
     padding: 30px;
     border-radius: 20px;
+
+    & h1{
+        color: #FFF;
+        font-size: 18px;
+        font-weight: normal;
+    }
 }

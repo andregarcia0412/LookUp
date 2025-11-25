@@ -134,8 +134,8 @@ const Home = ({}) => {
 
         <div className="info-wrapper">
           <div className="home-charts">
-            <ChartCard chart={<BarChartComponent infoArr={userExpenses} />} />
-            <ChartCard chart={<LineChartComponent infoArr={userExpenses} />} />
+            <ChartCard title="Expenses by Category" chart={<BarChartComponent infoArr={userExpenses} />} />
+            <ChartCard title="Expenses Over Time" chart={<LineChartComponent infoArr={userExpenses} />} />
           </div>
           <ExpenseCardsContainer
             removeExpense={removeExpense}
