@@ -59,7 +59,7 @@ const Form = ({ title, label }) => {
       .post("/auth/sign-in", {
         email: inputEmail.current.value,
         password: inputPassword.current.value,
-        rememberUser: false,
+        rememberUser: checked,
       })
       .then((res) => {
         localStorage.setItem("user_data", JSON.stringify(res.data));
