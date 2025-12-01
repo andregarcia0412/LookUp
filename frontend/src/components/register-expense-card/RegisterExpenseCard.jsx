@@ -128,14 +128,6 @@ const RegisterExpenseCard = ({
       description = "";
     }
 
-    if (!validationRegex.test(description)) {
-      return {
-        ok: false,
-        message: "Insert only letters, symbols and numbers",
-        culprit: descriptionInput.current,
-      };
-    }
-
     if (!date) {
       return {
         ok: false,

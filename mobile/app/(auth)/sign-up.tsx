@@ -9,7 +9,7 @@ import Radio from "@/components/Radio";
 import { Link } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const signUpScreen = () => {
+const SignUpScreen = () => {
   const [nameText, setNameText] = React.useState<string>("");
   const [emailText, setEmailText] = React.useState<string>("");
   const [passwordText, setPasswordText] = React.useState<string>("");
@@ -205,7 +205,7 @@ const signUpScreen = () => {
 
       <Text style={{ color: "#999" }}>
         Don't have an account?{" "}
-        <Link href="/(auth)/sign-in">
+        <Link href="/">
           <Text style={authStyles.link}>Login</Text>
         </Link>
       </Text>
@@ -213,4 +213,4 @@ const signUpScreen = () => {
   );
 };
 
-export default signUpScreen;
+export default SignUpScreen;

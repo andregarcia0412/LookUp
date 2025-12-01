@@ -6,7 +6,7 @@ import React from "react";
 import PasswordInput from "@/components/PasswordInput";
 import LoginButton from "../../components/LoginButton";
 import Radio from "@/components/Radio";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SignInScreen = () => {
@@ -41,6 +41,7 @@ const SignInScreen = () => {
     }
 
     await AsyncStorage.setItem("user_data", JSON.stringify(response.data));
+    router.push("/home");
   }
 
   function validateSignInFields() {
