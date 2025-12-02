@@ -24,7 +24,7 @@ const RegisterExpenseCard = ({
   const amountInput = React.useRef();
   const dateInput = React.useRef();
 
-  const [amountInputValue, setAmountInputValue] = React.useState(null);
+  const [amountInputValue, setAmountInputValue] = React.useState(values[1] || "");
 
   const [errorMessage, setErrorMessage] = React.useState("");
 
