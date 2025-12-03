@@ -119,7 +119,7 @@ const Home = () => {
 
       <Card>
         <Text style={{ color: "#999", fontSize: 12 }}>Total expenses</Text>
-        <Text style={{ color: "#FFF", fontSize: 36, fontWeight: "bold" }}>
+        <Text style={{ color: "#FFF", fontSize: 24, fontWeight: "bold" }}>
           {totalExpenses.toLocaleString("en-US", {
             style: "currency",
             currency: "USD",
