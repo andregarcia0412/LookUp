@@ -2,7 +2,7 @@ import "./style.toast.css";
 import CheckCircle from "../../assets/check_circle.svg";
 import React from "react";
 
-const Toast = ({ text, isVisible, setVisible, setShoulShowToast }) => {
+const Toast = ({ text, isVisible, setVisible }) => {
   let timer, timer2;
   React.useEffect(() => {
     if (!isVisible) {

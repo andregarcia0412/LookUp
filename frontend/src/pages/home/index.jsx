@@ -81,15 +81,12 @@ const Home = ({}) => {
 
   return (
     <div>
-      <HomeHeader
-        btnOnClick={() => setNewExpenseClosed(false)}
-      />
+      <HomeHeader btnOnClick={() => setNewExpenseClosed(false)} />
       {shouldShowToast && (
         <Toast
           text={"Expense Added"}
           isVisible={ToastIsVisible}
           setVisible={setToastVisible}
-          setShoulShowToast={setShouldShowToast}
         />
       )}
       <div className="home-container">

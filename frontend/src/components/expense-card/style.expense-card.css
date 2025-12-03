@@ -11,7 +11,6 @@
     color: #FFF;
     border-radius: 16px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
 }
 
 .texts{
@@ -66,12 +65,12 @@
     font-size: 22px;
 }
 
-#trash{
+.expense-card-btn-img{
     width: 16px;
     height: 16px;
 }
 
-#remove-btn{
+.expense-card-btn{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -88,9 +87,20 @@
     background-color: #EF4444;
 }
 
+#edit-btn:hover{
+    background-color: #3B82F6;
+}
+
 .price-button{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
+}
+
+.card-btns{
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
 }
