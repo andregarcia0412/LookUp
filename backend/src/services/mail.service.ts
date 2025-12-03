@@ -10,16 +10,19 @@ export class MailService {
   constructor(private configService: ConfigService) {
     this.transporter = nodemailer.createTransport({
       host:"smtp.gmail.com",
-      port:587,
-      secure: false,
+      port:465,
+      secure: true,
       auth: {
         user: this.configService.get<string>('NODEMAILER_USER'),
         pass: this.configService.get<string>('NODEMAILER_PASS'),
       },
       tls: {
         rejectUnauthorized: false
-      }
-    });
+      },
+      family: 4,
+      logger: true,
+      debug: true,
+    } as any);
     this.transporter.verify((error, success) => {
       if (error) {
         this.logger.error('ERRO CRÍTICO NA CONEXÃO SMTP:', error);
