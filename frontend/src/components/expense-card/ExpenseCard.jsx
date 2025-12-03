@@ -78,7 +78,7 @@ const ExpenseCard = ({
         </div>
         <div className="price-button">
           <p id="price">
-            $ <span style={{ color: "#FFF" }}>{price}</span>
+            $ <span style={{ color: "#FFF" }}>{Number(price).toFixed(2)}</span>
           </p>
           <div className="card-btns">
             <button
