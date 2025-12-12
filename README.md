@@ -26,7 +26,18 @@ This project includes a `docker-compose.yml` that starts the frontend, backend, 
 
 ### Prerequisites
 - Docker installed  
-- Docker Compose installed  
+- Docker Compose installed
+
+## Environment Variables
+
+Before running the project, make sure to configure the environment variables.
+
+1. Duplicate the `.env.example` file:
+   
+   ```bash
+   cp .env.example .env
+3. Fill in the required values inside .env.
+
 
 ### Steps
 
@@ -62,3 +73,11 @@ The mobile app can be started using Expo.
    npx expo start
 3. **Run the app**
   - Scan the QR code with Expo Go on your phone
+
+## Tech Stack
+- Frontend: React + Vite
+- Backend: NestJS
+- Mobile: React Native + Expo
+- Database: PostgreSQL
+- Containerization: Docker & Docker Compose
+
